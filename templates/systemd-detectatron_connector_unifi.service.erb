@@ -11,7 +11,7 @@ Type=simple
 WorkingDirectory=<%= @detectatron_dir %>/connector-unifi
 Environment=ENDPOINT_DETECTATRON=<%= @endpoint_detectatron %>
 Environment=UNIFI_API_KEY=<%= @unifi_api_key %>
-ExecStart=<%= @java_binary %> -Xmx<%= @java_heap_mb %>m -jar <%= @detectatron_dir -%>/connector-unifi/build/libs/latest.jar
+ExecStart=<%= @java_binary %> -Xmx<%= @java_heap_mb %>m -jar <%= @detectatron_dir -%>/connector_unifi/build/libs/latest.jar
 RestartSec=5
 Restart=always
 User=<%= @detectatron_user %>
