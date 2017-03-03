@@ -1,0 +1,18 @@
+# systemd unit file for Detectatron
+# (generated via puppet-detectatron)
+#
+
+[Unit]
+Description=Detectatron Service
+
+[Service]
+Type=simple
+WorkingDirectory=<%= @detectatron_dir %>/server
+ExecStart=<%= @detectatron_java_binary %> -Xmx<%= @java_heap_mb %>m -jar <%= @detectatron_dir -%>/server/build/libs/latest.jar
+RestartSec=5
+Restart=always
+User=<%= @detectatron_user %>
+Group=<%= @detectatron_group %>
+
+[Install]
+WantedBy=multi-user.target
