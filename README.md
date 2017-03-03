@@ -36,8 +36,9 @@ need to define the list when you invoke the class.
 
     # Install the Unifi Connector for Detectatron and point at local install
     class { '::detectatron::connector::unifi':
-      endpoint      => 'http://localhost:8080/''
-      java_heap_mb  => '128'
+      endpoint_detectatron => 'http://localhost:8080/',
+      unifi_api_key        => 'abc123',
+      java_heap_mb         => '128'
     }
 
 
