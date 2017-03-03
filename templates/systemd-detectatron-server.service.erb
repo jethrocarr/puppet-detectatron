@@ -4,14 +4,15 @@
 
 [Unit]
 Description=Detectatron Service
-Environment=AWS_ACCESS_KEY_ID=<%= @aws_access_key_id %>
-Environment=AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key %>
-Environment=AWS_REGION=<%= @aws_region %>
-Environment=S3_BUCKET=<%= @s3_bucket %>
+
 
 [Service]
 Type=simple
 WorkingDirectory=<%= @detectatron_dir %>/server
+Environment=AWS_ACCESS_KEY_ID=<%= @aws_access_key_id %>
+Environment=AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key %>
+Environment=AWS_REGION=<%= @aws_region %>
+Environment=S3_BUCKET=<%= @s3_bucket %>
 ExecStart=<%= @java_binary %> -Xmx<%= @java_heap_mb %>m -jar <%= @detectatron_dir -%>/server/build/libs/latest.jar
 RestartSec=5
 Restart=always
