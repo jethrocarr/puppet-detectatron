@@ -19,11 +19,6 @@ class detectatron (
     fail('detectatron module only support systemd')
   }
 
-  if ! is_hash($app_config) {
-    fail('You must set the application configuration in Hiera')
-  }
-
-
   # Create a system user/group if it's set to "detectatron". This allows a user
   # to override to use an existing account if desired.
   if ($detectatron_group == "detectatron") {
