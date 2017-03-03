@@ -4,8 +4,8 @@ class detectatron::server (
   $detectatron_dir          = $detectatron::detectatron_dir,
   $detectatron_user         = $detectatron::detectatron_user,
   $detectatron_group        = $detectatron::detectatron_group,
-  $detectatron_java_binary  = $detectatron::detectatron_java_binary,
   $detectatron_git_server   = $detectatron::detectatron_git_server,
+  $java_binary              = $detectatron::java_binary,
   $ports                    = '8080',
   $java_heap_mb             = '512',
   $aws_access_key_id        = undef,
@@ -28,9 +28,10 @@ class detectatron::server (
     ensure   => latest,
     provider => 'git',
     path     =>  "${detectatron_dir}/server",
-    source   => $detectatron_git,
+    source   => $detectatron_git_server,
     revision => 'master',
     notify   => Exec['build_server_code'], # Trigger build upon update
+    force    => true, # overwrite existing dir
     require  => [
       Package['git'],
       File['detectatron_dir_server'],
@@ -38,7 +39,7 @@ class detectatron::server (
   }
 
   exec { "build_server_code":
-    command     => "rm build/libs/latest.jar && ./gradlew bootRepackage && ln `find build -name '*.jar' | tail -n1` build/libs/latest.jar",
+    command     => "rm -f build/libs/latest.jar && ./gradlew bootRepackage && ln `find build -name '*.jar' | tail -n1` build/libs/latest.jar",
     notify      => Service['detectatron_server'],
     cwd         => "${detectatron_dir}/server",
     provider    => "shell",

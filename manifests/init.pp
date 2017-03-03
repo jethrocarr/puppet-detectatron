@@ -4,10 +4,10 @@
 
 class detectatron (
   $init_system                     = $detectatron::params::init_system,
+  $java_binary                     = $detectatron::params::java_binary,
   $detectatron_dir                 = $detectatron::params::detectatron_dir,
   $detectatron_user                = $detectatron::params::detectatron_user,
   $detectatron_group               = $detectatron::params::detectatron_group,
-  $detectatron_java_binary         = $detectatron::params::detectatron_java_binary,
   $detectatron_git_server          = $detectatron::params::detectatron_git_server,
   $detectatron_git_connector_unifi = $detectatron::params::detectatron_git_connector_unifi
 ) inherits ::detectatron::params {
