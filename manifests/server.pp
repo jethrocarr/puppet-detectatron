@@ -30,7 +30,7 @@ class detectatron::server (
     path     =>  "${detectatron_dir}/server",
     source   => $detectatron_git,
     revision => 'master',
-    notify   => Exec['build_code'], # Trigger build upon update
+    notify   => Exec['build_server_code'], # Trigger build upon update
     require  => [
       Package['git'],
       File['detectatron_dir_server'],
@@ -38,10 +38,11 @@ class detectatron::server (
   }
 
   exec { "build_server_code":
-    command  => "rm build/libs/latest.jar && ./gradlew bootRepackage && ln `find build -name '*.jar' | tail -n1` build/libs/latest.jar",
-    notify   => Service['detectatron-server'],
-    cwd      => "${detectatron_dir}/server",
-    provider => "shell"
+    command     => "rm build/libs/latest.jar && ./gradlew bootRepackage && ln `find build -name '*.jar' | tail -n1` build/libs/latest.jar",
+    notify      => Service['detectatron_server'],
+    cwd         => "${detectatron_dir}/server",
+    provider    => "shell",
+    refreshonly => true,
   }
 
 
@@ -53,7 +54,7 @@ class detectatron::server (
     content  => template('detectatron/systemd-detectatron-server.service.erb'),
     notify   => [
       Exec['detectatron_reload_systemd'],
-      Service["detectatron-server"],
+      Service["detectatron_server"],
     ]
   }
 
@@ -62,7 +63,7 @@ class detectatron::server (
     enable  => true,
     require => [
      Exec['detectatron_reload_systemd'],
-     File["init_detectatron_${name}"],
+     File["init_detectatron_server"],
      Vcsrepo['detectatron_code_server'],
     ],
 

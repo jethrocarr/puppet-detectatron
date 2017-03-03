@@ -1,4 +1,4 @@
-# puppet-howalarming
+# puppet-detectatron
 
 Installs and configures the daemons behind Detectatron including the init
 configuration to ensure daemons launch & recover as required.
