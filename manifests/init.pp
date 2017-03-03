@@ -34,7 +34,7 @@ class detectatron (
       gid     => $detectatron_group,
       home    => $detectatron_dir,
       system  => true,
-      shell   => '/sbin/nologin',
+      shell   => '/usr/sbin/nologin',
       require => Group[$detectatron_group],
     }
   }
