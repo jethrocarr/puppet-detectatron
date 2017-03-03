@@ -8,7 +8,7 @@ Description=Detectatron Service
 
 [Service]
 Type=simple
-WorkingDirectory=<%= @detectatron_dir %>/connector-unifi
+WorkingDirectory=<%= @detectatron_dir %>/connector_unifi
 Environment=ENDPOINT_DETECTATRON=<%= @endpoint_detectatron %>
 Environment=UNIFI_API_KEY=<%= @unifi_api_key %>
 ExecStart=<%= @java_binary %> -Xmx<%= @java_heap_mb %>m -jar <%= @detectatron_dir -%>/connector_unifi/build/libs/latest.jar
