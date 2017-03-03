@@ -6,15 +6,13 @@ class detectatron::server (
   $detectatron_group        = $detectatron::detectatron_group,
   $detectatron_java_binary  = $detectatron::detectatron_java_binary,
   $detectatron_git_server   = $detectatron::detectatron_git_server,
+  $ports                    = '8080',
   $java_heap_mb             = '512',
   $aws_access_key_id        = undef,
   $aws_secret_access_key    = undef,
   $aws_region               = 'us-east-1',
   $s3_bucket                = undef,
-  ) {
-
-  # The base class must be included first because it is used by parameter defaults
-  require ::detectatron
+  ) inherits ::detectatron {
 
 
   # Download and build the application

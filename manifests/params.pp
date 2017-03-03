@@ -3,15 +3,13 @@
 # You can override these in Hiera, but do so via the inheriting class.
 #
 # Don't use:
-# detectatron::params::port = '8080'
+# detectatron::params::java_binary = '8080'
 # Use:
-# detectatron::port = '8080'
+# detectatron::java_binary = '8080'
 #
 
 class detectatron::params {
 
-  # Port to run Detectatron server on
-  $port = '8080'
 
   # Full path of the Java binary because someone decided that systemd
   # shouldn't have the ability to lookup PATH :'(
@@ -35,7 +33,7 @@ class detectatron::params {
   # the user account for us.
   $detectatron_user  = 'detectatron'
   $detectatron_group = 'detectatron'
-  
+
 }
 
 # vi:smartindent:tabstop=2:shiftwidth=2:expandtab:
