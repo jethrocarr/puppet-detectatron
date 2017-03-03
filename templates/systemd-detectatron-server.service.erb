@@ -12,7 +12,7 @@ Environment=S3_BUCKET=<%= @s3_bucket %>
 [Service]
 Type=simple
 WorkingDirectory=<%= @detectatron_dir %>/server
-ExecStart=<%= @detectatron_java_binary %> -Xmx<%= @java_heap_mb %>m -jar <%= @detectatron_dir -%>/server/build/libs/latest.jar
+ExecStart=<%= @java_binary %> -Xmx<%= @java_heap_mb %>m -jar <%= @detectatron_dir -%>/server/build/libs/latest.jar
 RestartSec=5
 Restart=always
 User=<%= @detectatron_user %>

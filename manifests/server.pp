@@ -31,7 +31,6 @@ class detectatron::server (
     source   => $detectatron_git_server,
     revision => 'master',
     notify   => Exec['build_server_code'], # Trigger build upon update
-    force    => true, # overwrite existing dir
     require  => [
       Package['git'],
       File['detectatron_dir_server'],
